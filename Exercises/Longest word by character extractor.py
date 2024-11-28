@@ -21,8 +21,19 @@ def extract_longest_words_containing(char, words):
                 result.append(word)
     return result
 
-def get_longest_word_by_char(mytext):
+def get_longest_word_by_char(my_text):
     """Sumarise the longest words in a given text by each of its characters.
 
-    mytext (str): any text"""
-    
+    my_text (str): any text
+
+    Output(dict): key = a char in mytext, value = longest word/s containing the
+    char"""
+    result = {}
+    my_words = my_text.split()
+    for word in my_words:
+        for my_char in word:
+            my_char = my_char.lower()
+            if my_char in result:
+                continue
+            result[my_char] = extract_longest_words_containing(my_char, my_words)
+    return result
